@@ -1,6 +1,7 @@
 <template>
     <div class="v-suggestions">
         <input type="text" :class="extendedOptions.inputClass"
+               ref="input"
                v-bind="$attrs"
                v-on:keydown="onKeyDown"
                v-on:blur="hideItems"
@@ -54,7 +55,8 @@
             const defaultOptions = {
                 debounce: 0,
                 placeholder: '',
-                inputClass: 'input'
+                inputClass: 'input',
+                ignoreNull: false
             }
             const extendedOptions = Object.assign({}, defaultOptions, this.options)
             return {
@@ -85,6 +87,9 @@
             }
         },
         methods: {
+            setFocus() {
+                this.$refs.input.focus();
+            },
             onFocus() {
                 this.showItems = true;
                 if (this.onFocusExecution && !this.query) {
@@ -101,6 +106,9 @@
             },
             hideItems() {
                 setTimeout(() => {
+                    if (this.activeItemIndex === 0 && this.extendedOptions.ignoreNull) {
+                        return;
+                    }
                     this.showItems = false
                 }, 300)
             },
@@ -134,6 +142,10 @@
                 }
             },
             selectItem(index) {
+                if (index === 0 && this.extendedOptions.ignoreNull) {
+                    this.activeItemIndex = 0;
+                    return;
+                }
                 let item = null
                 if (typeof index === 'undefined') {
                     if (this.activeItemIndex === -1) {
