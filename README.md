@@ -6,10 +6,7 @@
 
 ``` bash
 # npm
-npm install v-suggestions
-
-# yarn
-yarn add v-suggestions
+npm install igorintelweb/v-suggestions
 
 ```
 ```javascript
@@ -27,7 +24,9 @@ Component supports Vue 2.1.0+ version. v-suggetions uses slot-scope based templa
 | v-model | String | an empty or predefined string as search query|
 | onInputChange      | Function | When the search query is changed, this function will be trigerred. The function should return an array of objects for the Component to render. It can also return a Promise instead of a set of objects. AJAX calls or delays can be addressed. |
 | onItemSelected | Function (optional)| When user selects (clicks or presses enter on an item), this function will be called |
+| onFocusExecution | Boolean | Perform immediately after focus |
 | options | Object | A set of options for customization of the component|
+| options.ignoreNull | Indicates whether to ignore a click on the first item in the drop-down list. |
 | options.debounce | Integer | A delay in milliseconds between each "onInputChange" events. If unspecified, it will be ignored. Comes in handy for ajax requests. See examples. |
 |options.placeholder | string | A placeholder string for search (optional) |
 |options.inputClass | string | Override classnames given to the input text element (optional) |
