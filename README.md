@@ -26,7 +26,7 @@ Component supports Vue 2.1.0+ version. v-suggetions uses slot-scope based templa
 | onItemSelected | Function (optional)| When user selects (clicks or presses enter on an item), this function will be called |
 | onFocusExecution | Boolean | Perform immediately after focus |
 | options | Object | A set of options for customization of the component|
-| options.ignoreNull | Indicates whether to ignore a click on the first item in the drop-down list. |
+| options.ignoreNull | Boolean | Indicates whether to ignore a click on the first item in the drop-down list. |
 | options.debounce | Integer | A delay in milliseconds between each "onInputChange" events. If unspecified, it will be ignored. Comes in handy for ajax requests. See examples. |
 |options.placeholder | string | A placeholder string for search (optional) |
 |options.inputClass | string | Override classnames given to the input text element (optional) |
