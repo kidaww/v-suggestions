@@ -6,6 +6,7 @@
                v-on:keydown="onKeyDown"
                v-on:blur="hideItems"
                v-on:focus="onFocus"
+               v-on:paste="onPaste"
                v-model="query"
                :autocomplete="Math.random()"
                :placeholder="extendedOptions.placeholder">
@@ -90,6 +91,9 @@
         }
       },
       methods: {
+        onPaste(event) {
+          this.$emit('paste', event);
+        },
         setFocus () {
           this.$refs.input.focus()
         },
