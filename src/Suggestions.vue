@@ -1,5 +1,5 @@
 <template>
-    <div class="v-suggestions">
+    <div class="v-suggestions" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
         <input type="text" :class="extendedOptions.inputClass"
                ref="input"
                v-bind="$attrs"
@@ -50,6 +50,9 @@
         },
         onFocusExecution: {
           type: Boolean
+        },
+        mouseMoveDetection: {
+          type: Boolean,
         }
       },
       data () {
@@ -91,6 +94,16 @@
         }
       },
       methods: {
+        handleMouseEnter(event) {
+          if (!this.mouseMoveDetection) return;
+
+          this.showItems = true;
+        },
+        handleMouseLeave(event) {
+          if (!this.mouseMoveDetection) return;
+
+          this.showItems = false;
+        },
         onPaste(event) {
           this.$emit('paste', event);
         },
